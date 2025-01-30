@@ -1,4 +1,4 @@
-name: : Github Actions 실습
+name: Github Actions 실습
 
 on:
   push:
