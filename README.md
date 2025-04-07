@@ -1,2 +1,3 @@
-# github-actions-practice
-github actions practice
+
+# github-actions-test
+Github Actions Test
