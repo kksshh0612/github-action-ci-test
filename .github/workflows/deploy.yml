@@ -1,0 +1,37 @@
+name: Github Actions 실습
+
+# Event : 어떤 시점에 Github Actions 로직을 실행시킬 지
+# main 브랜치에 push될 때, 아래 workflow를 실행
+on:
+  push:
+    branches:
+      - main
+
+# 하나의 workflow는 하나 이상의 job으로 구성된다.
+# 여러 job은 병렬적으로 수행된다.
+jobs:
+  My-Deploy-Job:              # job을 식별하기 위한 id
+    runs-on: ubuntu-latest    # Github Actions 로직을 실행할 운영체제
+
+    # job은 여러 step으로 구성된다.
+    # 특정 작업 내부에서 수행되는 가장 작은 단위
+    steps:
+      - name: Hello World 찍기
+        run: echo "Hello World"
+
+      - name: 여러 명령어 문장 작성하기
+        run: |
+          echo "Good"
+          echo "morning"
+
+      - name: Github Actions 자체에 저장된 변수 사용하기
+        # 커밋의 id값, 레포지토리 이름
+        run: |
+          echo $GITHUB_SHA          
+          echo $GITHUB_REPOSITORY   
+
+      - name: 외부에 노출되면 안되는 값
+        # settings -> Secrets ans variables -> Actions -> Secrets
+        run: |
+          echo ${{secrets.VALUE1}}
+          echo ${{secrets.VALUE2}}
